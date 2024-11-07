@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
             GlobalScope.launch {
                 var response = newsAPI.getNews()
-                Log.d("shoaibxmeghani",response.body().toString())
+                Log.d("shoaibxmeghani testing",response.body().toString())
             }
 
             Greeting("Android")
