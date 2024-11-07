@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.shoaibxmeghani.jetpacklab1.api.NewsAPI
+import com.shoaibxmeghani.jetpacklab1.screens.newslist.viewmodel.NewsListScreen
 import com.shoaibxmeghani.jetpacklab1.ui.theme.Jetpacklab1Theme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
@@ -28,21 +29,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            GlobalScope.launch {
-                var response = newsAPI.getNews()
-                Log.d("shoaibxmeghani testing",response.body().toString())
-            }
-
-            Greeting("Android")
-            /*Jetpacklab1Theme {
+            //Greeting("Android")
+            Jetpacklab1Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    NewsListScreen()
                 }
-            }*/
+            }
         }
     }
 }
