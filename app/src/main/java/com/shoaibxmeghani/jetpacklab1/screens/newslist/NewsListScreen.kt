@@ -1,6 +1,7 @@
 package com.shoaibxmeghani.jetpacklab1.screens.newslist.viewmodel
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,26 +24,27 @@ import com.shoaibxmeghani.jetpacklab1.ui.theme.Jetpacklab1Theme
 
 
 @Composable
-fun NewsListScreen(){
+fun NewsListScreen(onClick: (title: String) -> Unit){
 
     val newsListVM: NewsListVM = hiltViewModel()
     val list = newsListVM.newsList.collectAsState()
 
     LazyColumn(content = {
         items(list.value){
-            NewsListItem(item = it)
+            NewsListItem(item = it,onClick)
         }
     })
 
 }
 
 @Composable
-fun NewsListItem(item: NewsItem) {
+fun NewsListItem(item: NewsItem,onClick : (title: String) -> Unit) {
 
     Card (
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .clickable { onClick(item.title) },
         border = BorderStroke(1.dp, Color(0xFFCCCCCC)),
         content = {
 
@@ -70,7 +72,7 @@ fun NewsListScreenPreview() {
 
          val item = NewsItem("source","news title")
 
-        NewsListItem(item)
+        NewsListItem(item,{})
     }
 
 
