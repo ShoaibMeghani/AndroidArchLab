@@ -11,7 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHost
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.shoaibxmeghani.jetpacklab1.api.NewsAPI
+import com.shoaibxmeghani.jetpacklab1.screens.newslist.viewmodel.NewsDetailScreen
 import com.shoaibxmeghani.jetpacklab1.screens.newslist.viewmodel.NewsListScreen
 import com.shoaibxmeghani.jetpacklab1.ui.theme.Jetpacklab1Theme
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,10 +41,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NewsListScreen()
+                    App()
                 }
             }
         }
+    }
+}
+@Composable
+fun App(){
+
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "newslist" ){
+      composable(route = "newslist") {
+          NewsListScreen()
+      }
+      composable("newsdetail") {
+          NewsDetailScreen()
+      }
     }
 }
 

@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.shoaibxmeghani.jetpacklab1.models.NewsItem
 import com.shoaibxmeghani.jetpacklab1.ui.theme.Jetpacklab1Theme
@@ -24,7 +25,7 @@ import com.shoaibxmeghani.jetpacklab1.ui.theme.Jetpacklab1Theme
 @Composable
 fun NewsListScreen(){
 
-    val newsListVM: NewsListVM = viewModel()
+    val newsListVM: NewsListVM = hiltViewModel()
     val list = newsListVM.newsList.collectAsState()
 
     LazyColumn(content = {
